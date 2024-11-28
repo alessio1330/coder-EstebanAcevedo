@@ -9,7 +9,11 @@
         <div style="font-size: larger; color: deepskyblue; text-align: center;">
             <h1>Estas son las notas</h1>
             {% for nota in notas %}
-                <p>{{ nota }}</p>
+                {% if nota > 6  %}
+                    <p style="color: green">Aprobado: {{ nota }}</p>
+                {% else %}
+                    <p style="color:red;">Desaprobado: {{ nota }}</p>
+                {% endif %}
             {% endfor %}
         </div>
     </body>
