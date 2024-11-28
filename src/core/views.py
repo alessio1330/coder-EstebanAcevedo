@@ -41,3 +41,9 @@ def tirar_dado(request):
         'fecha': datetime.now().strftime('%H:%M:%S.%f'),
     }
     return render(request, 'core/dados.html', context=datos)
+
+
+def ejercicio_1(request):
+    nombre = 'Louis'
+    apellido = 'Van Beethoven'
+    return render(request, 'core/ejercicio-1.html', {'nombre': nombre, 'apellido': apellido})
