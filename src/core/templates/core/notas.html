@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Notas</title>
     </head>
+
     <body>
         <div style="font-size: larger; color: deepskyblue; text-align: center;">
             <h1>Estas son las notas</h1>
             {% for nota in notas %}
-                {% if nota > 6  %}
+                {% if nota > 6 %}
                     <p style="color: green">Aprobado: {{ nota }}</p>
                 {% else %}
                     <p style="color:red;">Desaprobado: {{ nota }}</p>
                 {% endif %}
             {% endfor %}
+            <br>
+            <a href="/">Volver</a>
         </div>
     </body>
+
 </html>
