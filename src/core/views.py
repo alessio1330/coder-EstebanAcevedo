@@ -47,3 +47,8 @@ def ejercicio_1(request):
     nombre = 'Louis'
     apellido = 'Van Beethoven'
     return render(request, 'core/ejercicio-1.html', {'nombre': nombre, 'apellido': apellido})
+
+
+def ver_notas(request):
+    lista_notas = [10, 8, 3, 7, 4, 5, 8]
+    return render(request, 'core/notas.html', {'notas': lista_notas})
