@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from cliente.views import ver_clientes
+from cliente.views import cliente_list, index, pais_list
 from core import views
 
 urlpatterns = [
@@ -31,5 +31,7 @@ urlpatterns = [
     path('ejercicio-1/', views.ejercicio_1),
     path('ver-notas/', views.ver_notas),
     path('ejercicio-2/', views.ejercicio_2),
-    path('clientes/', ver_clientes),
+    path('cliente/', index),
+    path('cliente/pais/', pais_list),
+    path('cliente/cliente/', cliente_list),
 ]
