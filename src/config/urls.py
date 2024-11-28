@@ -18,6 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('saludar/', views.saludar),
+    path('saludar-con-etiqueta', views.saludar_con_etiqueta),
 ]
