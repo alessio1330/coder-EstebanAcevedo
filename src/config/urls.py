@@ -27,9 +27,9 @@ urlpatterns = [
     path('saludar/', views.saludar),
     path('saludar-con-etiqueta', views.saludar_con_etiqueta),
     path('saludar/<str:nombre>/<str:apellido>', views.saludar_con_parametros),
-    path('tirar-dado', views.tirar_dado),
+    path('tirar-dado/', views.tirar_dado),
     path('ejercicio-1/', views.ejercicio_1),
-    path('ver-notas', views.ver_notas),
+    path('ver-notas/', views.ver_notas),
     path('ejercicio-2/', views.ejercicio_2),
     path('clientes/', ver_clientes),
 ]
