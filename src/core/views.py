@@ -14,3 +14,7 @@ def saludar_con_parametros(request, nombre: str, apellido: str):
     nombre = nombre.capitalize()
     apellido = apellido.capitalize()
     return HttpResponse(f'{apellido}, {nombre}')
+
+
+def index(request):
+    return render(request, 'core/index.html')
