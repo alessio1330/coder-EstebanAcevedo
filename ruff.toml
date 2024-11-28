@@ -1,0 +1,8 @@
+line-length = 100
+
+[format]
+quote-style = "single"
+
+[lint]
+ignore = ["F401"]
+extend-select = ["F", "I", "N", "A"]

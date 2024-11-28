@@ -1,0 +1,21 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-linter
+        name: Ruff Linter
+        entry: ruff check --fix
+        language: system
+        types: [python]
+        stages: [pre-commit]
+      - id: ruff-format
+        name: Ruff Format
+        entry: ruff format
+        language: system
+        types: [python]
+        stages: [pre-commit]
+      - id: djhtml
+        name: Django HTML
+        entry: djhtml
+        language: system
+        types: [html]
+        stages: [pre-commit]
