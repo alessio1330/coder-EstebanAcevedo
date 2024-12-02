@@ -2,6 +2,7 @@ line-length = 100
 
 [format]
 quote-style = "single"
+exclude = [".venv", "migrations"]
 
 [lint]
 ignore = ["F401"]
