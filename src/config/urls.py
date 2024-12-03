@@ -18,20 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from cliente.views import cliente_list, index, pais_list
-from core import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('saludar/', views.saludar),
-    path('saludar-con-etiqueta', views.saludar_con_etiqueta),
-    path('saludar/<str:nombre>/<str:apellido>', views.saludar_con_parametros),
-    path('tirar-dado/', views.tirar_dado),
-    path('ejercicio-1/', views.ejercicio_1),
-    path('ver-notas/', views.ver_notas),
-    path('ejercicio-2/', views.ejercicio_2),
-    path('cliente/', index),
-    path('cliente/pais/', pais_list),
-    path('cliente/cliente/', cliente_list),
 ]
