@@ -1,9 +1,12 @@
-<h1>Producto</h1>
-<h3>Lista de Categorías</h3>
-<ul>
-    {% for categoria in categorias %}
-        <li>{{ categoria }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'producto:index' %}">Volver</a>
-<a href="{% url 'core:index' %}">Inicio</a>
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Producto: Categorías</h1>
+    <ul>
+        {% for categoria in categorias %}
+            <li>{{ categoria }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'producto:index' %}">Volver</a>
+    <a href="{% url 'core:index' %}">Inicio</a>
+{% endblock content %}

@@ -1,9 +1,16 @@
+{% extends 'core/base.html' %}
 {% load static %}
 
-<h1>Acerca de mí</h1>
-<p>Me llamo Esteban</p>
+{% block title %}
+    About
+{% endblock title %}
 
-<img src="{% static 'core/img/perfil.png' %}" alt="" height=25%>
+{% block content %}
+    <h1>Acerca de mí</h1>
+    <p>Me llamo Esteban</p>
 
-<p>Linkedin</p>
-<a href="{% url 'core:index' %}">Inicio</a>
+    <img src="{% static 'core/img/perfil.png' %}" alt="" height=200px>
+
+    <p>Linkedin</p>
+    <a href="{% url 'core:index' %}">Inicio</a>
+{% endblock content %}
