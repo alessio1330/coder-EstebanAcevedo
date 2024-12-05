@@ -2,8 +2,10 @@
 
 {% block content %}
     <h1>Producto: Categorías - Formulario</h1>
-    <form>
+    <form method="post">
+        {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit">Enviar</button>
     </form>
     <a href="{% url 'producto:index' %}">Volver</a>
     <a href="{% url 'core:index' %}">Inicio</a>
