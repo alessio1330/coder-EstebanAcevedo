@@ -6,7 +6,7 @@ from . import models
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = models.Categoria
-        fields = ['nombre']
+        fields = ['nombre', 'descripcion']
 
     def clean_nombre(self):
         nombre: str = self.cleaned_data.get('nombre', '')
