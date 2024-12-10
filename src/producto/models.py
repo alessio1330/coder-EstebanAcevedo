@@ -8,7 +8,7 @@ class Categoria(models.Model):
     """Categorías de productos"""
 
     nombre = models.CharField(max_length=255, unique=True)
-    descripcion = models.TextField(blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True, verbose_name='descripción')
 
     def __str__(self):
         return self.nombre
