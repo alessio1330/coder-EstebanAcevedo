@@ -4,8 +4,8 @@
 {% block content %}
     <h1>La Caja de Pandora</h1>
     <div>
-        <a href="{% url 'producto:index' %}">Ir a Producto</a>
-        <a href="{% url 'core:about' %}">Acerca de mí</a>
+        <a href="{% url 'producto:index' %}"><button>Ir a Producto</button></a>
+        <a href="{% url 'core:about' %}"><button>Acerca de mí</button></a>
     </div>
     <img src="{% static 'core/img/cajapandora.webp' %}" alt="imagen" height=200px>
 {% endblock content %}
