@@ -1,22 +1,27 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
-from . import forms, models
+from .forms import CategoriaForm
+from .models import Categoria
 
 
 def index(request):
     return render(request, 'producto/index.html')
 
 
-def categoria_list(request):
-    categorias = models.Categoria.objects.all()
-    return render(request, 'producto/categoria_list.html', {'categorias': categorias})
+# **** CATEGORIA - LIST VIEW
 
 
-def categoria_create(request):
+def categoria_list(request: HttpRequest) -> HttpResponse:
+    queryset = Categoria.objects.all()
+    return render(request, 'producto/categoria_list.html', {'object_list': queryset})
+
+
+def categoria_create(request: HttpRequest) -> HttpResponse:
     if request.method == 'GET':
-        form = forms.CategoriaForm()
+        form = CategoriaForm()
     if request.method == 'POST':
-        form = forms.CategoriaForm(request.POST)
+        form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('producto:categoria_list')

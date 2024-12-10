@@ -2,11 +2,26 @@
 
 {% block content %}
     <h1>Producto: Categorías</h1>
-    <ul>
-        {% for categoria in categorias %}
-            <li>{{ categoria }}</li>
-        {% endfor %}
-    </ul>
+    <a href="{% url 'producto:categoria_create' %}">
+        <button>Crear Categorías de Productos</button></a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in object_list %}
+                <tr>
+                    <td>{{ categoria }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>No hay datos disponibles.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <a href="{% url 'producto:index' %}"><button>Volver</button></a>
-    <a href="{% url 'core:index' %}"><button>Inicio</button></a>
 {% endblock content %}
