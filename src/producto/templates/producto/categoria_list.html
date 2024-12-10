@@ -21,6 +21,8 @@
                             <button>Ver</button></a>
                         <a href="{% url 'producto:categoria_update' categoria.id %}">
                             <button>Editar</button></a>
+                        <a href="{% url 'producto:categoria_delete' categoria.id %}">
+                            <button>Eliminar</button></a>
                     </td>
                 </tr>
             {% empty %}

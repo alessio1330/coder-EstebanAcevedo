@@ -52,3 +52,14 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
 def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = Categoria.objects.get(id=pk)
     return render(request, 'producto/categoria_detail.html', {'object': query})
+
+
+# **** CATEGORIA - DELETE VIEW
+
+
+def categoria_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Categoria.objects.get(id=pk)
+    if request.method == 'POST':
+        query.delete()
+        return redirect('producto:categoria_list')
+    return render(request, 'producto/categoria_confirm_delete.html', {'object': query})
