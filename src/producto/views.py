@@ -44,3 +44,11 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
             form.save()
             return redirect('producto:categoria_list')
     return render(request, 'producto/categoria_form.html', {'form': form})
+
+
+# **** CATEGORIA - DETAIL VIEW
+
+
+def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Categoria.objects.get(id=pk)
+    return render(request, 'producto/categoria_detail.html', {'object': query})

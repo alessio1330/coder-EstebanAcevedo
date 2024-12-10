@@ -17,9 +17,10 @@
                 <tr>
                     <td>{{ categoria }}</td>
                     <td>
+                        <a href="{% url 'producto:categoria_detail' categoria.id %}">
+                            <button>Ver</button></a>
                         <a href="{% url 'producto:categoria_update' categoria.id %}">
-                            <button>Editar</button>
-                        </a>
+                            <button>Editar</button></a>
                     </td>
                 </tr>
             {% empty %}

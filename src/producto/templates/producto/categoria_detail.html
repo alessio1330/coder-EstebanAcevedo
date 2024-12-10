@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Producto: Categorías - Vista en detalle</h1>
+    <ul>
+        <li><strong>Nombre:</strong> {{ object.nombre }}</li>
+        <li><strong>Descripción:</strong>
+            {% if object.descripcion %}
+                {{ object.descripcion}}
+            {% else %}
+                -
+            {% endif %}
+        </li>
+    </ul>
+    <a href="{% url 'producto:categoria_list' %}"><button>Volver</button></a>
+{% endblock content %}
