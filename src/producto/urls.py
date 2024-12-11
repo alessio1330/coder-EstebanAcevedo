@@ -1,13 +1,12 @@
 from django.urls import path
 
-from producto.views_models import categoria, producto
-
-from . import views
+from .views import index
+from .views_models import categoria, producto
 
 app_name = 'producto'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', index, name='index'),
 ]
 
 urlpatterns += [
