@@ -6,11 +6,14 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Acerca de mí</h1>
-    <p>Me llamo Esteban</p>
+    <div style="text-align: center;">
 
-    <img src="{% static 'core/img/perfil.png' %}" alt="" height=200px>
+        <h1>Acerca de mí</h1>
+        <p>Me llamo Esteban</p>
 
-    <p>Linkedin</p>
-    <a href="{% url 'core:index' %}"><button>Inicio</button></a>
+        <img src="{% static 'core/img/perfil.png' %}" alt="" height=200px>
+
+        <p>Linkedin: <a href="https://www.linkedin.com/in/esteban-acevedo-aberastain/" target="_blank">https://www.linkedin.com/in/esteban-acevedo-aberastain/</a></p>
+        <a href="{% url 'core:index' %}"><button>Inicio</button></a>
+    </div>
 {% endblock content %}
