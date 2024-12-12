@@ -7,4 +7,5 @@ app_name = 'core'
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
 ]

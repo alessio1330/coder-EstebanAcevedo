@@ -6,6 +6,10 @@
     <div>
         <a href="{% url 'producto:index' %}"><button>Ir a Producto</button></a>
         <a href="{% url 'core:about' %}"><button>Acerca de mí</button></a>
+        <a href="{% url 'core:login' %}"><button>Iniciar Sesión</button></a>
     </div>
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <img src="{% static 'core/img/cajapandora.webp' %}" alt="imagen" height=200px>
 {% endblock content %}
