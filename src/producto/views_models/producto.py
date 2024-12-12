@@ -14,6 +14,14 @@ from ..models import Producto
 class ProductoListView(ListView):
     model = Producto
 
+    def get_queryset(self):
+        busqueda = self.request.GET.get('busqueda')
+        if busqueda:
+            queryset = Producto.objects.filter(nombre__icontains=busqueda)
+        else:
+            queryset = Producto.objects.all()
+        return queryset
+
 
 class ProductoCreateView(CreateView):
     model = Producto
