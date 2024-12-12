@@ -1,8 +1,14 @@
 line-length = 88
+exclude = [
+    ".git",
+    ".venv",
+    ".vscode",
+    "migrations",
+    ]
 
 [format]
 quote-style = "single"
-exclude = [".venv", "migrations"]
+
 
 [lint]
 ignore = ["F401"]
