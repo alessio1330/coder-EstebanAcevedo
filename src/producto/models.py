@@ -17,7 +17,11 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     categoria = models.ForeignKey(
-        Categoria, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='categoría'
+        Categoria,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name='categoría',
     )
     nombre = models.CharField(max_length=100, db_index=True)
     descripcion = models.TextField(blank=True, null=True, verbose_name='descripción')
