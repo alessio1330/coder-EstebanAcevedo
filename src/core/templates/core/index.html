@@ -4,9 +4,16 @@
 {% block content %}
     <h1>La Caja de Pandora</h1>
     <div>
-        <a href="{% url 'producto:index' %}"><button>Ir a Producto</button></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'producto:index' %}"><button>Ir a Producto</button></a>
+            <form action="{% url 'core:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        {% else %}
+            <a href="{% url 'core:login' %}"><button>Iniciar Sesión</button></a>
+        {% endif %}
         <a href="{% url 'core:about' %}"><button>Acerca de mí</button></a>
-        <a href="{% url 'core:login' %}"><button>Iniciar Sesión</button></a>
     </div>
     {% for message in messages %}
         <p>{{ message }}</p>
