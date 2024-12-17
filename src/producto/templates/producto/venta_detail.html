@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Producto: Ventas - Vista en detalle</h1>
+    <ul>
+        <li><strong>Vendedor:</strong> {{ object.vendedor.usuario.username }}</li>
+        <li><strong>Producto:</strong> {{ object.producto.nombre }}</li>
+        <li><strong>Cantidad:</strong> {{ object.cantidad }}</li>
+        <li><strong>Precio Total:</strong> ${{ object.precio_total }}</li>
+        <li><strong>Fecha de Venta:</strong> {{ object.fecha_venta|date:"d/m/Y H:i" }}</li>
+    </ul>
+    <a href="{% url 'producto:venta_list' %}"><button>Volver</button></a>
+{% endblock content %}

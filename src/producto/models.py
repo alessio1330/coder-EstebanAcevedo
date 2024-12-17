@@ -32,9 +32,10 @@ class Producto(models.Model):
     stock = models.PositiveIntegerField()
 
     def __str__(self):
+        base = f'{self.nombre} - ${self.precio}'
         if self.categoria:
-            return f'{self.categoria} - {self.nombre}'
-        return self.nombre
+            return f'{self.categoria} - {base}'
+        return base
 
     class Meta:
         unique_together = ('categoria', 'nombre')
@@ -62,6 +63,9 @@ class Venta(models.Model):
 
     class Meta:
         ordering = ('-fecha_venta',)
+
+    def __str__(self):
+        return f"{self.vendedor.usuario.username} - {self.producto.nombre} - ${self.precio_total}"
 
     def clean(self):
         if self.cantidad > self.producto.stock:

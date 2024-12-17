@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Producto: Vendedores - Vista en detalle</h1>
+    <ul>
+        <li><strong>Usuario:</strong> {{ object.usuario.username }}</li>
+        <li><strong>Celular:</strong> {{ object.celular }}</li>
+        <li><strong>Avatar:</strong>
+            {% if object.avatar %}
+                <img src="{{ object.avatar.url }}" alt="Avatar" style="max-width: 200px;">
+            {% else %}
+                Sin avatar
+            {% endif %}
+        </li>
+    </ul>
+    <a href="{% url 'producto:vendedor_list' %}"><button>Volver</button></a>
+{% endblock content %}

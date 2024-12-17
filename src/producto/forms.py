@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Categoria, Producto
+from .models import Categoria, Producto, Vendedor, Venta
 
 
 def validar_nombre(nombre: str):
@@ -29,3 +29,15 @@ class ProductoForm(forms.ModelForm):
     def clean_nombre(self):
         nombre: str = self.cleaned_data.get('nombre', '')
         return validar_nombre(nombre)
+
+
+class VendedorForm(forms.ModelForm):
+    class Meta:
+        model = Vendedor
+        fields = ['usuario', 'celular', 'avatar']
+
+
+class VentaForm(forms.ModelForm):
+    class Meta:
+        model = Venta
+        fields = ['vendedor', 'producto', 'cantidad']

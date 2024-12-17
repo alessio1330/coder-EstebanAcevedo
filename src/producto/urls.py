@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import index
-from .views_models import categoria, producto
+from .views_models import categoria, producto, vendedor, venta
 
 app_name = 'producto'
 
@@ -44,5 +44,33 @@ urlpatterns += [
         'producto/delete/<int:pk>',
         producto.ProductoDeleteView.as_view(),
         name='producto_delete',
+    ),
+]
+
+urlpatterns += [
+    path('vendedor/list/', vendedor.vendedor_list, name='vendedor_list'),
+    path('vendedor/create/', vendedor.vendedor_create, name='vendedor_create'),
+    path(
+        'vendedor/update/<int:pk>', vendedor.vendedor_update, name='vendedor_update'
+    ),
+    path(
+        'vendedor/detail/<int:pk>', vendedor.vendedor_detail, name='vendedor_detail'
+    ),
+    path(
+        'vendedor/delete/<int:pk>', vendedor.vendedor_delete, name='vendedor_delete'
+    ),
+]
+
+urlpatterns += [
+    path('venta/list/', venta.venta_list, name='venta_list'),
+    path('venta/create/', venta.venta_create, name='venta_create'),
+    path(
+        'venta/update/<int:pk>', venta.venta_update, name='venta_update'
+    ),
+    path(
+        'venta/detail/<int:pk>', venta.venta_detail, name='venta_detail'
+    ),
+    path(
+        'venta/delete/<int:pk>', venta.venta_delete, name='venta_delete'
     ),
 ]

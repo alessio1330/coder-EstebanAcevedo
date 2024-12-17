@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Producto: Ventas</h1>
+
+    <form method="get">
+        <input type="text" name="busqueda" placeholder="Buscar...">
+    </form>
+
+    <a href="{% url 'producto:venta_create' %}">
+        <button>Crear Venta</button></a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Vendedor</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Total</th>
+                <th>Fecha Venta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in object_list %}
+                <tr>
+                    <td>{{ venta.vendedor.usuario.username }}</td>
+                    <td>{{ venta.producto.nombre }}</td>
+                    <td>{{ venta.cantidad }}</td>
+                    <td>${{ venta.precio_total }}</td>
+                    <td>{{ venta.fecha_venta|date:"d/m/Y H:i" }}</td>
+                    <td>
+                        <a href="{% url 'producto:venta_detail' venta.id %}">
+                            <button>Ver</button></a>
+                        <a href="{% url 'producto:venta_update' venta.id %}">
+                            <button>Editar</button></a>
+                        <a href="{% url 'producto:venta_delete' venta.id %}">
+                            <button>Eliminar</button></a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No hay datos disponibles.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'producto:index' %}"><button>Volver</button></a>
+{% endblock content %}
