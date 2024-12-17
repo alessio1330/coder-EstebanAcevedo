@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_not_required  # type: ignore
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -6,15 +7,18 @@ from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, UserProfileForm
 
 
+@login_not_required
 def index(request):
     return render(request, 'core/index.html')
 
 
+@login_not_required
 def about(request):
     return render(request, 'core/about.html')
 
@@ -32,6 +36,7 @@ class CustomLoginView(LoginView):
         return super().form_valid(form)
 
 
+@method_decorator(login_not_required, name='dispatch')
 class CustomRegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'core/register.html'
