@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
-from .forms import CustomAuthenticationForm, CustomUserCreationForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, UserProfileForm
 
 
 def index(request):
@@ -39,3 +40,14 @@ class CustomRegisterView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         messages.success(self.request, 'Registro exitoso. Ahora puedes iniciar sesión.')
         return super().form_valid(form)
+
+
+class UpdateProfileView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'core/profile.html'
+    success_url = reverse_lazy('core:index')
+
+    def get_object(self):
+        # Devuelve el usuario actual en lugar de esperar un pk
+        return self.request.user

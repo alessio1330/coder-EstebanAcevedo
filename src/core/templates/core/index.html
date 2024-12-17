@@ -10,6 +10,9 @@
                 {% csrf_token %}
                 <button type="submit">Cerrar Sesión</button>
             </form>
+            <a href="{% url 'core:profile' %}">
+                <button>Modificar Perfil</button>
+            </a>
         {% else %}
             <a href="{% url 'core:login' %}"><button>Iniciar Sesión</button></a>
         {% endif %}
