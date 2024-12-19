@@ -1,5 +1,3 @@
-from django.forms import BaseModelForm
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -25,10 +23,12 @@ class VentaCreateView(CreateView):
     success_url = reverse_lazy('producto:venta_list')
 
     def form_valid(self, form):
-        venta = form.save(commit=False)
+        venta = form.save(commit=False)  # Guardar la venta sin confirmar la transacción
         producto = form.cleaned_data['producto']
         cantidad = form.cleaned_data['cantidad']
         venta.precio_total = producto.precio * cantidad
+        producto.stock -= cantidad  # Restar la cantidad vendida al stock
+        producto.save()  # Guardar los cambios en el producto
         venta.save()
         return super().form_valid(form)
 
@@ -39,10 +39,12 @@ class VentaUpdateView(UpdateView):
     success_url = reverse_lazy('producto:venta_list')
 
     def form_valid(self, form):
-        venta = form.save(commit=False)
+        venta = form.save(commit=False)  # Guardar la venta sin confirmar la transacción
         producto = form.cleaned_data['producto']
         cantidad = form.cleaned_data['cantidad']
         venta.precio_total = producto.precio * cantidad
+        producto.stock -= cantidad  # Restar la cantidad vendida al stock
+        producto.save()  # Guardar los cambios en el producto
         venta.save()
         return super().form_valid(form)
 
