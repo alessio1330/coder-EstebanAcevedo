@@ -40,7 +40,17 @@ class VendedorForm(forms.ModelForm):
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
-        fields = ['vendedor', 'producto', 'cantidad']
+        fields = ['producto', 'cantidad']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(VentaForm, self).__init__(*args, **kwargs)
+        if self.user:
+            vendedor = Vendedor.objects.get(usuario=self.user)
+            self.fields['vendedor'] = forms.CharField(
+                initial=vendedor.usuario.username,
+                widget=forms.TextInput(attrs={'readonly': 'readonly'}),
+            )
 
     def clean_cantidad(self):
         cantidad = self.cleaned_data.get('cantidad')
