@@ -17,10 +17,8 @@ class ProductoListView(ListView):
     def get_queryset(self):
         busqueda = self.request.GET.get('busqueda')
         if busqueda:
-            queryset = Producto.objects.filter(nombre__icontains=busqueda)
-        else:
-            queryset = Producto.objects.all()
-        return queryset
+            return Producto.objects.filter(nombre__icontains=busqueda)
+        return Producto.objects.all()
 
 
 class ProductoCreateView(CreateView):
