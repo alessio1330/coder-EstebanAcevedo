@@ -44,9 +44,7 @@ class Producto(models.Model):
 
 
 class Vendedor(models.Model):
-    usuario = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='vendedor'
-    )
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendedor')
     celular = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='imagenes_perfil', blank=True, null=True)
 
@@ -65,12 +63,4 @@ class Venta(models.Model):
         ordering = ('-fecha_venta',)
 
     def __str__(self):
-        return f"{self.vendedor.usuario.username} - {self.producto.nombre} - ${self.precio_total}"
-
-    def clean(self):
-        if self.cantidad > self.producto.stock:
-            raise ValidationError('La cantidad no puede ser superior al stock')
-
-    def save(self, *args, **kwargs):
-        self.precio_total = self.producto.precio * self.cantidad
-        super().save(*args, **kwargs)
+        return f'{self.vendedor.usuario.username} - {self.producto.nombre} - ${self.precio_total}'

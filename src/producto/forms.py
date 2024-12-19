@@ -41,3 +41,10 @@ class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
         fields = ['vendedor', 'producto', 'cantidad']
+
+    def clean_cantidad(self):
+        cantidad = self.cleaned_data.get('cantidad')
+        producto = self.cleaned_data.get('producto')
+        if cantidad and producto and cantidad > producto.stock:
+            raise forms.ValidationError('La cantidad no puede ser superior al stock')
+        return cantidad
