@@ -70,42 +70,5 @@ class VentaCreateView(CreateView):
         return super().form_valid(form)
 
 
-class VentaUpdateView(UpdateView):
-    model = Venta
-    form_class = VentaForm
-    success_url = reverse_lazy('producto:venta_list')
-
-    def form_valid(self, form):
-        """
-        Método que se ejecuta cuando el formulario es válido.
-
-        Args:
-            form (Form): El formulario que contiene los datos de la venta.
-
-        Returns:
-            HttpResponse: La respuesta HTTP después de procesar el formulario válido.
-
-        Este método realiza las siguientes acciones:
-        1. Guarda la venta sin confirmar la transacción en la base de datos.
-        2. Calcula el precio total de la venta multiplicando el precio del producto por la cantidad.
-        3. Resta la cantidad vendida del stock del producto.
-        4. Guarda los cambios en el producto.
-        5. Guarda la venta.
-        """
-        venta = form.save(commit=False)
-        producto = form.cleaned_data['producto']
-        cantidad = form.cleaned_data['cantidad']
-        venta.precio_total = producto.precio * cantidad
-        producto.stock -= cantidad
-        producto.save()
-        venta.save()
-        return super().form_valid(form)
-
-
 class VentaDetailView(DetailView):
     model = Venta
-
-
-class VentaDeleteView(DeleteView):
-    model = Venta
-    success_url = reverse_lazy('producto:venta_list')
