@@ -37,7 +37,5 @@ urlpatterns += [
 urlpatterns += [
     path('venta/list/', venta.VentaListView.as_view(), name='venta_list'),
     path('venta/create/', venta.VentaCreateView.as_view(), name='venta_create'),
-    path('venta/update/<int:pk>', venta.VentaUpdateView.as_view(), name='venta_update'),
     path('venta/detail/<int:pk>', venta.VentaDetailView.as_view(), name='venta_detail'),
-    path('venta/delete/<int:pk>', venta.VentaDeleteView.as_view(), name='venta_delete'),
 ]

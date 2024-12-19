@@ -32,10 +32,6 @@
                     <td>
                         <a href="{% url 'producto:venta_detail' venta.id %}">
                             <button>Ver</button></a>
-                        <a href="{% url 'producto:venta_update' venta.id %}">
-                            <button>Editar</button></a>
-                        <a href="{% url 'producto:venta_delete' venta.id %}">
-                            <button>Eliminar</button></a>
                     </td>
                 </tr>
             {% empty %}
