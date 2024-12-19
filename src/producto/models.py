@@ -32,9 +32,9 @@ class Producto(models.Model):
     stock = models.PositiveIntegerField()
 
     def __str__(self):
-        base = f'{self.nombre} - ${self.precio}'
+        base = f'{self.nombre} ${self.precio} | stock: {self.stock}'
         if self.categoria:
-            return f'{self.categoria} - {base}'
+            return f'{self.categoria} > {base}'
         return base
 
     class Meta:
