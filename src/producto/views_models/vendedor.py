@@ -1,64 +1,36 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from ..forms import VendedorForm
 from ..models import Vendedor
 
-# **** VENDEDOR - LIST VIEW
+
+class VendedorListView(ListView):
+    model = Vendedor
+
+    def get_queryset(self):
+        busqueda = self.request.GET.get('busqueda')
+        if busqueda:
+            return Vendedor.objects.filter(usuario__username__icontains=busqueda)
+        return Vendedor.objects.all()
 
 
-def vendedor_list(request: HttpRequest) -> HttpResponse:
-    busqueda = request.GET.get('busqueda')
-    if busqueda:
-        queryset = Vendedor.objects.filter(usuario__username__icontains=busqueda)
-    else:
-        queryset = Vendedor.objects.all()
-    return render(request, 'producto/vendedor_list.html', {'object_list': queryset})
+class VendedorCreateView(CreateView):
+    model = Vendedor
+    form_class = VendedorForm
+    success_url = reverse_lazy('producto:vendedor_list')
 
 
-# **** VENDEDOR - CREATE VIEW
+class VendedorUpdateView(UpdateView):
+    model = Vendedor
+    form_class = VendedorForm
+    success_url = reverse_lazy('producto:vendedor_list')
 
 
-def vendedor_create(request: HttpRequest) -> HttpResponse:
-    if request.method == 'GET':
-        form = VendedorForm()
-    if request.method == 'POST':
-        form = VendedorForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('producto:vendedor_list')
-    return render(request, 'producto/vendedor_form.html', {'form': form})
+class VendedorDetailView(DetailView):
+    model = Vendedor
 
 
-# **** VENDEDOR - UPDATE VIEW
-
-
-def vendedor_update(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Vendedor.objects.get(id=pk)
-    if request.method == 'GET':
-        form = VendedorForm(instance=query)
-    if request.method == 'POST':
-        form = VendedorForm(request.POST, request.FILES, instance=query)
-        if form.is_valid():
-            form.save()
-            return redirect('producto:vendedor_list')
-    return render(request, 'producto/vendedor_form.html', {'form': form})
-
-
-# **** VENDEDOR - DETAIL VIEW
-
-
-def vendedor_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Vendedor.objects.get(id=pk)
-    return render(request, 'producto/vendedor_detail.html', {'object': query})
-
-
-# **** VENDEDOR - DELETE VIEW
-
-
-def vendedor_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Vendedor.objects.get(id=pk)
-    if request.method == 'POST':
-        query.delete()
-        return redirect('producto:vendedor_list')
-    return render(request, 'producto/vendedor_confirm_delete.html', {'object': query})
+class VendedorDeleteView(DeleteView):
+    model = Vendedor
+    success_url = reverse_lazy('producto:vendedor_list')
