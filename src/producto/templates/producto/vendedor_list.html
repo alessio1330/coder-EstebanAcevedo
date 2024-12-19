@@ -7,8 +7,10 @@
         <input type="text" name="busqueda" placeholder="Buscar...">
     </form>
 
-    <a href="{% url 'producto:vendedor_create' %}">
-        <button>Crear Vendedor</button></a>
+    {% if request.user.is_staff %}
+        <a href="{% url 'producto:vendedor_create' %}">
+            <button>Crear Vendedor</button></a>
+    {% endif %}
 
     <table border="1">
         <thead>
