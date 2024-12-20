@@ -1,13 +1,32 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-    <h1>Producto: Ventas - Vista en detalle</h1>
-    <ul>
-        <li><strong>Vendedor:</strong> {{ object.vendedor.usuario.username }}</li>
-        <li><strong>Producto:</strong> {{ object.producto.nombre }}</li>
-        <li><strong>Cantidad:</strong> {{ object.cantidad }}</li>
-        <li><strong>Precio Total:</strong> ${{ object.precio_total }}</li>
-        <li><strong>Fecha de Venta:</strong> {{ object.fecha_venta|date:"d/m/Y H:i" }}</li>
-    </ul>
-    <a href="{% url 'producto:venta_list' %}"><button>Volver</button></a>
+    <div class="container mt-4">
+        <h1 class="mb-4">Producto: Ventas - Vista en detalle</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Vendedor:</dt>
+                    <dd class="col-sm-9">{{ object.vendedor.usuario.username }}</dd>
+
+                    <dt class="col-sm-3">Producto:</dt>
+                    <dd class="col-sm-9">{{ object.producto.nombre }}</dd>
+
+                    <dt class="col-sm-3">Cantidad:</dt>
+                    <dd class="col-sm-9">{{ object.cantidad }}</dd>
+
+                    <dt class="col-sm-3">Precio Total:</dt>
+                    <dd class="col-sm-9">${{ object.precio_total|floatformat:2 }}</dd>
+
+                    <dt class="col-sm-3">Fecha de Venta:</dt>
+                    <dd class="col-sm-9">{{ object.fecha_venta|date:"d/m/Y H:i" }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="{% url 'producto:venta_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
 {% endblock content %}
