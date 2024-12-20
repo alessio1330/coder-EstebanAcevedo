@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -67,6 +68,7 @@ class VentaCreateView(CreateView):
         producto.stock -= cantidad
         producto.save()
         venta.save()
+        messages.success(self.request, 'Venta creada exitosamente')
         return super().form_valid(form)
 
 

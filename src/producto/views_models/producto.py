@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -20,11 +21,19 @@ class ProductoCreateView(CreateView):
     form_class = ProductoForm
     success_url = reverse_lazy('producto:producto_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Producto creado exitosamente')
+        return super().form_valid(form)
+
 
 class ProductoUpdateView(UpdateView):
     model = Producto
     form_class = ProductoForm
     success_url = reverse_lazy('producto:producto_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Producto actualizado exitosamente')
+        return super().form_valid(form)
 
 
 class ProductoDetailView(DetailView):
@@ -34,3 +43,7 @@ class ProductoDetailView(DetailView):
 class ProductoDeleteView(DeleteView):
     model = Producto
     success_url = reverse_lazy('producto:producto_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, 'Producto eliminado exitosamente')
+        return super().delete(request, *args, **kwargs)

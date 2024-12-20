@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
@@ -26,6 +27,7 @@ def categoria_create(request: HttpRequest) -> HttpResponse:
         form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Categoría creada exitosamente')
             return redirect('producto:categoria_list')
     return render(request, 'producto/categoria_form.html', {'form': form})
 
@@ -41,6 +43,7 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
         form = CategoriaForm(request.POST, instance=query)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Categoría actualizada exitosamente')
             return redirect('producto:categoria_list')
     return render(request, 'producto/categoria_form.html', {'form': form})
 
@@ -60,5 +63,6 @@ def categoria_delete(request: HttpRequest, pk: int) -> HttpResponse:
     query = Categoria.objects.get(id=pk)
     if request.method == 'POST':
         query.delete()
+        messages.success(request, 'Categoría eliminada exitosamente')
         return redirect('producto:categoria_list')
     return render(request, 'producto/categoria_confirm_delete.html', {'object': query})
