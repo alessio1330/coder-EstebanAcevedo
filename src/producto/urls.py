@@ -1,5 +1,6 @@
 from django.urls import path
 
+from . import views
 from .views import index
 from .views_models import categoria, producto, vendedor, venta
 

@@ -30,9 +30,7 @@ class CustomLoginView(LoginView):
 
     def form_valid(self, form: AuthenticationForm) -> HttpResponse:
         usuario = form.get_user()
-        messages.success(
-            self.request, f'Inicio de sesión exitoso ¡Bienvenido {usuario.username}!'
-        )
+        messages.success(self.request, f'Inicio de sesión exitoso ¡Bienvenido {usuario.username}!')
         return super().form_valid(form)
 
 

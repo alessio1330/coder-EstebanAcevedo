@@ -1,0 +1,15 @@
+
+
+{% extends 'base.html' %}  <!-- Asumiendo que estás utilizando una plantilla base -->
+
+{% block content %}
+    <h1>Lista de Productos</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>{{ producto.nombre }} - ${{ producto.precio }}</li>
+        {% empty %}
+            <li>No hay productos disponibles.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}"><button>Regresar al Inicio</button></a>
+{% endblock %}
